@@ -3,7 +3,7 @@
 SOURCEDIR="/etc /home /var/lib/portage/world"
 PASSWORD=123456
 BASENAME=backup
-BACKUPDIR=/tmp
+BACKUPDIR=/backup
 TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
 
 BAKFILE=$BACKUPDIR/$BASENAME-$TIMESTAMP.dat
