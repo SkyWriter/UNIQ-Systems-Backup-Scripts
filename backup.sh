@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCEDIR=/tmp/test/
+SOURCEDIR="/etc /home /var/lib/portage/world"
 PASSWORD=123456
 BASENAME=backup
 BACKUPDIR=/tmp
@@ -9,6 +9,4 @@ TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
 BAKFILE=$BACKUPDIR/$BASENAME-$TIMESTAMP.dat
 SNARFILE=$BACKUPDIR/$BASENAME.snar
 
-echo $TIMESTAMP
-
-tar --create --listed-incremental=$SNARFILE $SOURCEDIR | bzip2 | openssl enc -e -aes-256-cbc -pass pass:$PASSWORD > $BAKFILE
+nice ionice -c 3 tar --create --verbose --listed-incremental=$SNARFILE $SOURCEDIR | bzip2 | openssl enc -e -aes-256-cbc -pass pass:$PASSWORD > $BAKFILE
